@@ -1,0 +1,9 @@
+body {background-color: blue;}
+
+#page-wrap:after {content: "SmartPhone Layout";}
+
+h2 span, #welcome {display: none;}
+
+body {font-size: xx-large;}
+
+footer, input {font-size: large;}
