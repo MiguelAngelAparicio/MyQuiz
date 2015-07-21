@@ -8,8 +8,10 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'MyQuiz' });
 });
 
-router.get("/quizes/question" , quizController.question);
-router.get("/quizes/answer" , quizController.answer);
+// Definición de rutas de /quizes (antiguos question y answer)
+router.get('/quizes',                      quizController.index);
+router.get('/quizes/:quizId(\\d+)',        quizController.show);
+router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
 
 router.get("/author" , function(req,res) {
 	res.render("author" , {autor: "Miguel Ángel Aparicio"});

@@ -8,7 +8,10 @@ nav {
 	height: 280px;
 }
 
-nav span {margin: 0px 300px 0px 0px;}
+nav li {
+    margin-top: 10px;
+    display: block;
+}
 
 section {
 	float: right;

@@ -39,12 +39,25 @@ exports.Quiz = Quiz;
 
 // sequelize.sync() crea e iniciliza tabla de preguntas en DB
 sequelize.sync().then(function() {
-    // success(..) ejecuta el manejador una vez creada la tabla    
-    Quiz.count().then(function(count){
-        if(count === 0) {  // la tabla se inicializa solo si esta vacia
-            Quiz.create({ pregunta: "¿Cúal es la capital de Grecia?",
-                          respuesta: "Atenas"})
-            .then(function(){console.log("Base de datos inicializada")});
-        };
+    // then(..) ejecuta el manejador una vez creada la tabla
+    Quiz.count().then(function(count) {
+        if (count === 0) {  // la tabla se inicializa solo si esta vacia
+            Quiz.create({   pregunta: "¿Cúal es la capital de Grecia?",
+                            respuesta: "Atenas"
+            });
+
+            Quiz.create({   pregunta: "¿Cúal es la capital de Portugal?",
+                            respuesta: "Lisboa"
+            });
+
+            Quiz.create({   pregunta: "¿Cúal es la ciudad de las Tres Culturas?",
+                            respuesta: "Toledo"
+            });
+
+            Quiz.create({   pregunta: "¿Quién escribió El Quijote?",
+                            respuesta: "Cervantes"
+            })
+            .then(function () { console.log("Base de datos inicializada") });
+         }
     });
 });

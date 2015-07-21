@@ -21,11 +21,12 @@ section {
 	padding: 20px;
 	background-color: #b5ffbb;
 	text-align: center;
+    margin-bottom: 10px;
 }
 
-header {margin-bottom: 10px;}
+table {margin: 0 auto;}
 
-section {margin-bottom: 10px;}
+header {margin-bottom: 10px;}
 
 header, nav, footer {
 	padding: 5px;
@@ -33,7 +34,15 @@ header, nav, footer {
 	text-align: center;
 }
 
-nav span {margin: 0px 10px 0px 0px;}
+table td {padding: 5px;}
+
+
+nav li {
+    margin: 0px 10px 0px 0px;
+    display: inline;
+}
+
+ul {margin: 0 auto;}
 
 a {
 	color: #180b4f;
