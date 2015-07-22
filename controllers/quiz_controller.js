@@ -17,7 +17,7 @@ exports.index = function (req, res) {
     if (req.query.search) {  // si hay algo para buscar en el query muestra las preguntas ya filtradas y ordenadas
         models.Quiz.findAll(
             // añadimos los % para que acepte espacios en blanco o cualquier otra cosa, hace de comodin
-            {where: [ "pregunta like ?", "%"+req.query.search.split(" ").join("%")+"%" ]}  
+            {where: [ "lower(pregunta) like lowewr(?)", "%"+req.query.search.split(" ").join("%")+"%" ]}  
         ).then(function(quizes) {
             res.render("quizes/index" , { quizes: quizes.sort() });
         }).catch(function(error) {next(error);})
