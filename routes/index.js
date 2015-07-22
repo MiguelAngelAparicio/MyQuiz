@@ -3,7 +3,7 @@ var router = express.Router();
 
 var quizController = require("../controllers/quiz_controller");
 
-/* GET home page. */
+/* GET home page. - pagina de bienvenida - index.ejs*/
 router.get('/', function(req, res) {
   res.render('index', { title: 'MyQuiz' });
 });
@@ -12,12 +12,12 @@ router.get('/', function(req, res) {
 router.param("quizId", quizController.load);  // autoload :quizId
 
 // Definición de rutas de /quizes (antiguos question y answer)
-router.get('/quizes',                      quizController.index);
-router.get('/quizes/:quizId(\\d+)',        quizController.show);
-router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
+router.get('/quizes',                      quizController.index);  // pagina con todas las preguntas
+router.get('/quizes/:quizId(\\d+)',        quizController.show);   // pagina para responder a la pregunta elegida
+router.get('/quizes/:quizId(\\d+)/answer', quizController.answer); // pagina de respuesta correcta o incorrecta
 
 router.get("/author" , function(req,res) {
-	res.render("author" , {autor: "Miguel Ángel Aparicio"});
+	res.render("author" , {autor: "Miguel Ángel Aparicio"});  // pagina de creditos
 });
 
 module.exports = router;
