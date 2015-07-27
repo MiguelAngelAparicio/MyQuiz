@@ -1,11 +1,21 @@
-﻿<table>
-    <th>
-        <form method="get" action="/quizes">
-            <input type="text" name="search" placeholder="Texto a buscar" />
-            <input type="submit" value="Buscar">
-        </form>
-    </th>
-<% var i; for (i=0; i < quizes.length; i++) { %>
-    <tr><td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td></tr>
-<% } %>
-</table>
+﻿
+<form method="get" action="/quizes">
+    <input type="text" name="search" placeholder="Texto a buscar" />
+    <input type="submit" value="Buscar">
+</form>
+    
+<table>
+    <% var i, celdas = 4; %>
+
+    <%for (i=0; i < quizes.length; i++, celdas--) { %>
+        <tr><td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td></tr>
+
+        <% if (celdas === 0) { %>
+            <% celdas = 4; %>
+            </table>
+            <table>
+        <% } %>
+    <% } %>
+</table><p>
+
+<a href="/quizes/new"><button type="button" id="creapreg">Crear pregunta</button></a>

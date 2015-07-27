@@ -16,6 +16,11 @@ router.get('/quizes',                      quizController.index);  // pagina con
 router.get('/quizes/:quizId(\\d+)',        quizController.show);   // pagina para responder a la pregunta elegida
 router.get('/quizes/:quizId(\\d+)/answer', quizController.answer); // pagina de respuesta correcta o incorrecta
 
+// paginas para nueva pregunta
+router.get("/quizes/new" ,                 quizController.new);    // pagina formulario de nueva pregunta
+router.post("/quizes/create" ,             quizController.create); // post para añadir preg a BBDD
+
+// pagina autor ejercicio modulo 6
 router.get("/author" , function(req,res) {
 	res.render("author" , {autor: "Miguel Ángel Aparicio"});  // pagina de creditos
 });
