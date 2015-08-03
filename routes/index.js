@@ -5,7 +5,7 @@ var quizController = require("../controllers/quiz_controller");
 
 /* GET home page. - pagina de bienvenida - index.ejs*/
 router.get('/', function(req, res) {
-  res.render('index', { title: 'MyQuiz' });
+  res.render('index', { title: 'MyQuiz', errors: []  });
 });
 
 // Autoload de comandos con :quizId
@@ -22,7 +22,7 @@ router.post("/quizes/create" ,             quizController.create); // post para 
 
 // pagina autor ejercicio modulo 6
 router.get("/author" , function(req,res) {
-	res.render("author" , {autor: "Miguel Ángel Aparicio"});  // pagina de creditos
+	res.render("author" , {autor: "Miguel Ángel Aparicio", errors: [] });  // pagina de creditos
 });
 
 module.exports = router;

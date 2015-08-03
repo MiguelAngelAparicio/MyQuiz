@@ -55,6 +55,11 @@ nav li {
 
 ul {margin: 0 auto;}
 
+#ErrorMsgs {
+    color: red;
+    font-size: smaller;        
+}
+
 a {
 	color: #180b4f;
 	font-weight: bold;

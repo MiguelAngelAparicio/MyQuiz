@@ -2,7 +2,7 @@ var models = require("../models/models.js");
 
 // Autoload - factoriza el código si ruta incluye :quizId
 exports.load = function (req, res, next, quizId) {
-    models.Quiz.find(quizId).then(
+    models.Quiz.findById(quizId).then(
         function (quiz) {
             if (quiz) {
                 req.quiz = quiz;
@@ -19,26 +19,26 @@ exports.index = function (req, res) {
             // añadimos los % para que acepte espacios en blanco o cualquier otra cosa, hace de comodin
             {where: [ "lower(pregunta) like lower(?)", "%"+req.query.search.split(" ").join("%")+"%" ]}  
         ).then(function(quizes) {
-            res.render("quizes/index" , { quizes: quizes.sort() });
+            res.render("quizes/index" , { quizes: quizes.sort(), errors: [] });
         }).catch(function(error) {next(error);})
     } else {  // si no se ha pasado nada en el cuadro de busqueda muestra la tabla completa de preguntas
         models.Quiz.findAll().then(function (quizes) {
-            res.render("quizes/index", { quizes: quizes });
+            res.render("quizes/index", { quizes: quizes, errors: [] });
         })
         .catch(function(error) { next(error); })
     };
 }
 // GET /quizes/:id  (muestra la pagina de pregunta - show.ejs)
 exports.show = function(req,res) {
-	res.render("quizes/show" , {quiz: req.quiz});		
+	res.render("quizes/show" , {quiz: req.quiz, errors: [] });		
 };
 
 // GET /quizes/:id/answer  (muestra la pagina de respuesta - answer.ejs)
 exports.answer = function(req,res) {
 	if (req.query.respuesta.toLowerCase() === req.quiz.respuesta.toLowerCase()) {
-		res.render("quizes/answer" , {quiz: req.quiz, respuesta: "CORRECTO"});
+		res.render("quizes/answer" , {quiz: req.quiz, respuesta: "CORRECTO", errors: [] });
 	} else {
-		res.render("quizes/answer" , {quiz: req.quiz, respuesta: "INCORRECTO"});
+		res.render("quizes/answer" , {quiz: req.quiz, respuesta: "INCORRECTO", errors: [] });
 	}		
 };
 
@@ -47,14 +47,20 @@ exports.new = function(req,res) {
     var quiz = models.Quiz.build (  // crea objeto quiz
         {pregunta: "Pregunta", respuesta: "Respuesta"}
     );
-    res.render("quizes/new", {quiz: quiz});
+    res.render("quizes/new", {quiz: quiz, errors: [] });
 };
 
 // POST /quizes/create
 exports.create = function(req,res) {
     var quiz = models.Quiz.build(req.body.quiz);
 
-// guarda en la BBDD los campos pregunta y respuesta de quiz (req.body.quiz)
-    quiz.save({fields: ["pregunta" , "respuesta"]})
-    .then(function() { res.redirect("/quizes");}) // redirección HTTP (URL relativo) lista de pregumtas
-};
+    quiz.validate().then(function(err){
+            if (err) {
+                res.render('quizes/new', {quiz: quiz, errors: err.errors});
+            } else { // save: guarda en DB campos pregunta y respuesta de quiz
+                quiz.save( { fields: [ "pregunta", "respuesta" ] } ).then( function() {
+                res.redirect('/quizes')})     // res.redirect: Redirección HTTP a lista de preguntas
+            }
+        }
+    );
+}; 
