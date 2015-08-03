@@ -20,6 +20,10 @@ router.get('/quizes/:quizId(\\d+)/answer', quizController.answer); // pagina de 
 router.get("/quizes/new" ,                 quizController.new);    // pagina formulario de nueva pregunta
 router.post("/quizes/create" ,             quizController.create); // post para añadir preg a BBDD
 
+// paginas para edicion de preguntas
+router.get("/quizes/:quizId(\\d+)/edit",   quizController.edit);   // pagina para editar pregunta
+router.put("/quizes/:quizId(\\d+)",        quizController.update); // put para modificar BBDD
+
 // pagina autor ejercicio modulo 6
 router.get("/author" , function(req,res) {
 	res.render("author" , {autor: "Miguel Ángel Aparicio", errors: [] });  // pagina de creditos
