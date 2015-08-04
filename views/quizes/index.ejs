@@ -5,20 +5,33 @@
 </form>
     
 <table>
-    <% var i, celdas = 4; %>
+    <% var i, celdas = 1; %>
 
-    <%for (i=0; i < quizes.length; i++, celdas--) { %>
+    <%for (i=0; i < quizes.length; i++, celdas++) { %>
         <tr>
             <td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
             <td><a href="quizes/<%= quizes[i].id %>/edit"><button>Editar</button></a></td>
+            <td>
+                <form method="post" action="/quizes/<%= quizes[i].id %>?_method=delete">
+                    <button type="submit" name="eliminar" onClick="return confirm('Eliminar: <%= quizes[i].pregunta %>');">
+                        Eliminar
+                    </button>
+                </form>
+            </td>
         </tr>
 
-        <% if (celdas === 0) { %>
-            <% celdas = 4; %>
+        <% if (celdas === 5) { %>
+
             </table>
             <table>
-        <% } %>
-    <% } %>
+        <% } else if (celdas === 6){%>
+            <% celdas = 1; %>
+            <style type="text/css">
+                table { float:  left;
+                        margin-left: 20px;
+                }
+            </style>
+    <% }} %>
 </table><p>
 
 <a href="/quizes/new"><button type="button" id="creapreg">Crear pregunta</button></a>

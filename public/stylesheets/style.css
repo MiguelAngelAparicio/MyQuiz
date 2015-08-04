@@ -26,15 +26,13 @@ section {
 }
 
 table {margin: 0 auto;
-       padding:  5px;
-       float: left;
+       padding:  4px;
 }
 
 #creapreg {
     display: block;
     margin:  0 auto;
     clear: both;
-    margin-bottom: 10px;
 }
 
 header {margin-bottom: 10px;}
