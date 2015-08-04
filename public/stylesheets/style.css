@@ -12,6 +12,14 @@ body {
 	color: white;
 }
 
+#preg, #resp, #tema {margin: 5px;}
+
+#tematica {
+    color: brown;
+    font-size: smaller;
+    font-weight: bold;
+}
+
 .main {
 	border: 2px solid black;
 	color: black;

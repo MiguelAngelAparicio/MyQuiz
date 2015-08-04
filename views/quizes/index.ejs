@@ -9,6 +9,7 @@
 
     <%for (i=0; i < quizes.length; i++, celdas++) { %>
         <tr>
+            <td id="tematica">(<%= quizes[i].tema %>)</td>
             <td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
             <td><a href="quizes/<%= quizes[i].id %>/edit"><button>Editar</button></a></td>
             <td>
@@ -21,14 +22,15 @@
         </tr>
 
         <% if (celdas === 5) { %>
-
             </table>
             <table>
+
         <% } else if (celdas === 6){%>
             <% celdas = 1; %>
             <style type="text/css">
-                table { float:  left;
-                        margin-left: 20px;
+                table {
+                    float:  left;
+                    margin-left: 20px;
                 }
             </style>
     <% }} %>

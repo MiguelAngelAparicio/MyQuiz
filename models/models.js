@@ -39,19 +39,23 @@ sequelize.sync().then(function() {
     Quiz.count().then(function(count) {
         if (count === 0) {  // la tabla se inicializa solo si esta vacia
             Quiz.create({   pregunta: "¿Cúal es la capital de Grecia?",
-                            respuesta: "Atenas"
+                            respuesta: "Atenas",
+                            tema: "Humanidades"
             });
 
             Quiz.create({   pregunta: "¿Cúal es la capital de Portugal?",
-                            respuesta: "Lisboa"
+                            respuesta: "Lisboa",
+                            tema: "Humanidades"
             });
 
             Quiz.create({   pregunta: "¿Cúal es la ciudad de las Tres Culturas?",
-                            respuesta: "Toledo"
+                            respuesta: "Toledo",
+                            tema: "Humanidades"
             });
 
-            Quiz.create({   pregunta: "¿Quién escribió El Quijote?",
-                            respuesta: "Cervantes"
+            Quiz.create({   pregunta: "¿Quién fue el fundador de Apple?",
+                            respuesta: "Steve Jobs",
+                            tema: "Tecnología"
             })
             .then(function () { console.log("Base de datos inicializada") });
          }
