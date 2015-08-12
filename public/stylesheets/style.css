@@ -1,5 +1,7 @@
 * {margin:0; padding:0;}
 
+#welcome {font-size: 200%;}
+
 body {
   font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: red;
@@ -75,3 +77,19 @@ a:hover {
 	color: black;
 	background-color: yellow;
 }
+
+.right {float: right;}
+
+.right button {
+  -webkit-border-radius: 20;
+  -moz-border-radius: 20;
+  border-radius: 20px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bolder;
+  background: #8d0899;
+  padding: 5px 20px 5px 20px;
+}
+
+.right button:hover {background: #820055;}

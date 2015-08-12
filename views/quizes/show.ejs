@@ -1,12 +1,12 @@
 <form method="get" action="/quizes/<%= quiz.id %>/answer">
-	<p>Pregunta: <%= quiz.pregunta %> </p>
+	<p>Pregunta: <strong><%= quiz.pregunta %></strong> </p>
 	<input type="text" name="respuesta" placeholder="Responda aquí" />
 	<input type="submit" value="Enviar">
 </form>
-
-<p><a href="/quizes/<%= quiz.id %>/comments/new"><button>Añadir comentario</button></a></p>
-
+<br />
 <p><strong>Comentarios:</strong></p>
 <% for(i in quiz.Comments) { %>
     <p>- <%= quiz.Comments[i].texto %></p>
 <% } %>
+
+<p><a href="/quizes/<%= quiz.id %>/comments/new"><button>Añadir comentario</button></a></p>

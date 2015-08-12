@@ -9,7 +9,7 @@
 
 <p>
     <label for="tema" class="rem">Tema:</label>  
-    <select id="tema" name="quiz[tema]" value="<%= quiz.tema %>">
+    <select id="tema" name="quiz[tema]">
         <option value="Tecnología" selected>Tecnología</option>
         <option value="Ciencia">Ciencia</option>
         <option value="Ocio">Ocio</option>
@@ -17,6 +17,11 @@
         <option value="Otro">Otro</option>
     </select>
 </p>
+<br />
+
+<script type="text/javascript">
+    document.getElementById("tema").value = "<%= quiz.tema %>"
+</script>
 
 <a href="/quizes"><button type="button">Cancelar</button></a>
 <input type="submit" value="Salvar">
