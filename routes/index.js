@@ -23,11 +23,11 @@ router.delete("/login",       sessionController.destroy);     // destruir sesion
 router.get('/quizes',                      quizController.index);  // pagina para mostrar todas las preguntas
 router.get('/quizes/:quizId(\\d+)',        quizController.show);   // pagina para responder a la pregunta elegida
 router.get('/quizes/:quizId(\\d+)/answer', quizController.answer); // pagina de respuesta correcta o incorrecta
-router.get("/quizes/new" ,                 quizController.new);    // pagina formulario de nueva pregunta
-router.post("/quizes/create" ,             quizController.create); // post para añadir preg a BBDD
-router.get("/quizes/:quizId(\\d+)/edit",   quizController.edit);   // pagina para editar pregunta
-router.put("/quizes/:quizId(\\d+)",        quizController.update); // put para modificar BBDD
-router.delete("/quizes/:quizId(\\d+)",     quizController.destroy);// delete para borrar pregunta de la BBDD
+router.get("/quizes/new" ,                 sessionController.loginRequired, quizController.new);    // pagina formulario de nueva pregunta
+router.post("/quizes/create" ,             sessionController.loginRequired, quizController.create); // post para añadir preg a BBDD
+router.get("/quizes/:quizId(\\d+)/edit",   sessionController.loginRequired, quizController.edit);   // pagina para editar pregunta
+router.put("/quizes/:quizId(\\d+)",        sessionController.loginRequired, quizController.update); // put para modificar BBDD
+router.delete("/quizes/:quizId(\\d+)",     sessionController.loginRequired, quizController.destroy);// delete para borrar pregunta de la BBDD
 
 // pagina autor ejercicio modulo 6
 router.get("/author" , function(req,res) {
