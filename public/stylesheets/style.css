@@ -93,3 +93,14 @@ a:hover {
 }
 
 .right button:hover {background: #820055;}
+
+.añadir {color: green;}
+.eliminar {color: red;}
+.editar {color: blue;}
+
+#respuestas {
+  font-size: 24px;
+  color: red;
+  font-weight: 900;
+  
+}

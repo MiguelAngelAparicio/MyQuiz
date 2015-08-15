@@ -5,8 +5,49 @@
 </form>
 <br />
 <p><strong>Comentarios:</strong></p>
-<% for(i in quiz.Comments) { %>
-    <p>- <%= quiz.Comments[i].texto %></p>
-<% } %>
 
-<p><a href="/quizes/<%= quiz.id %>/comments/new"><button>Añadir comentario</button></a></p>
+<table>
+    <% var i, celdas = 1; %>
+
+    <%for (i=0; i < quiz.Comments.length; i++, celdas++) { %>
+        <tr>
+        	<% if (quiz.Comments[i].publicado || session.user) { %>
+        		<td>- <%= quiz.Comments[i].texto %></td>
+        		    
+        		<% if (session.user && !quiz.Comments[i].publicado) { %>
+    				<td>
+    					<form method="post" action="/quizes/<%= quiz.id %>/comments/<%= quiz.Comments[i].id %>/publish?_method=put">
+                        	<button class= "añadir" type="submit" name="publicar" onClick="return confirm('Publicar: <%= quiz.Comments[i].texto %>?');">
+                            	Publicar
+                        	</button>
+                        </form>
+                    </td>
+                <% } else { %> <td></td> <% } %>
+                	
+                <td>
+                    <form method="post" action="">
+                        <button class="eliminar" type="submit" name="eliminar" onClick="return confirm('Eliminar comentario: <%= quiz.Comments[i].texto %>?');">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+            <% } %>
+        </tr>
+
+        <% if (celdas === 4) { %>
+            </table>
+            <table>
+
+        <% } else if (celdas === 5){%>
+            <% celdas = 1; %>
+            <style type="text/css">
+                table {
+                    float:  left;
+                    margin-left: 20px;
+                }
+            </style>
+    <% }} %>
+</table><br />
+
+<p style="clear: both"><a href="/quizes/<%= quiz.id %>/comments/new"><button class="añadir">Añadir comentario</button></a></p>
+<p style="font-size: 14px; color: red; font-weight: bold;">(Los comentarios sólo se publicaran tras haber sido revisados)</p>
