@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-var debug = require('debug')('myquiz');
+var debug = require('debug')('quiz');
 var app = require('../app');
 var fs = require("fs");
 var https = require("https");
@@ -17,5 +17,5 @@ var server = app.listen(app.get('port'), function() {
 
 var serverSecure = https.createServer(options, app);
 serverSecure.listen(8443, function() {
-	debug("Express server listening on port " + server.address().port);
+	debug("Express secure server listening on port " + server.address().port);
 });

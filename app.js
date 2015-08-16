@@ -41,6 +41,23 @@ app.use(function(req, res, next) {
     next()
 });
 
+// MW de Auto Logout - Controla el tiempo entre transacciones
+app.use( function(req, res, next) {
+  if ( req.session.user ) {                             // si hay sesion
+    var actual = new Date();                            // tiempo actual
+    var ultima = new Date( req.session.user.ultima );   // tiempo de la ultima transaccion
+    if ( ( actual - ultima ) > 120000 ) {               // si el tiempo entre actual y ultima es mayor de 2 minutos
+        delete req.session.user;                        // eliminamos sesion
+        req.session.errors = [ { "message": 'Sesión finalizada, vuelva a logarse, por favor' } ]; // mensaje al usuario
+        res.redirect("/login");                         // redireccionamos a la pantalla de login
+        return;
+    } else {                                            // si el tiempo es inferior a 2 minutos
+        req.session.user.ultima = new Date();           // reiniciamos la variable ultima con el tiempo actual
+    }
+  }
+  next();
+});
+
 app.use('/', routes);
 
 // catch 404 and forward to error handler
