@@ -27,7 +27,7 @@
 
             <% if (session.user) {%> 	
                 <td>
-                    <form method="post" action="">
+                    <form method="post" action="/quizes/<%= quiz.id %>/comments/<%= quiz.Comments[i].id %>?_method=delete">
                         <button class="eliminar" type="submit" name="eliminar" onClick="return confirm('Eliminar comentario: <%= quiz.Comments[i].texto %>?');">
                             Eliminar
                         </button>
