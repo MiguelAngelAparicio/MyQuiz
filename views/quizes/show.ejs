@@ -23,7 +23,9 @@
                         </form>
                     </td>
                 <% } else { %> <td></td> <% } %>
-                	
+            <% } %>   
+
+            <% if (session.user) {%> 	
                 <td>
                     <form method="post" action="">
                         <button class="eliminar" type="submit" name="eliminar" onClick="return confirm('Eliminar comentario: <%= quiz.Comments[i].texto %>?');">
@@ -36,17 +38,11 @@
 
         <% if (celdas === 4) { %>
             </table>
-            <table>
+            <table style = "margin-left: 50px">
 
-        <% } else if (celdas === 5){%>
-            <% celdas = 1; %>
-            <style type="text/css">
-                table {
-                    float:  left;
-                    margin-left: 20px;
-                }
-            </style>
-    <% }} %>
+        <% } else if (celdas === 5){ celdas = 1; } %>  
+    <% } %>
+
 </table><br />
 
 <p style="clear: both"><a href="/quizes/<%= quiz.id %>/comments/new"><button class="añadir">Añadir comentario</button></a></p>

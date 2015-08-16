@@ -1,7 +1,6 @@
-﻿
-<form method="get" action="/quizes">
+﻿<form method="get" action="/quizes">
     <input type="text" name="search" placeholder="Texto a buscar" />
-    <input type="submit" value="Buscar">
+    <input type="submit" id= "buscar" value="Buscar">
 </form>
     
 <table>
@@ -27,15 +26,9 @@
             </table>
             <table>
 
-        <% } else if (celdas === 6){%>
-            <% celdas = 1; %>
-            <style type="text/css">
-                table {
-                    float:  left;
-                    margin-left: 20px;
-                }
-            </style>
-    <% }} %>
+        <% } else if (celdas === 6) { celdas = 1; }%>
+    <% } %>
+
 </table><p>
 <% if (session.user) {%>
     <a href="/quizes/new"><button class="añadir" type="button" id="creapreg">Crear pregunta</button></a>
