@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-var quizController = require("../controllers/quiz_controller");
-var commentController = require("../controllers/comment_controller");
-var sessionController = require("../controllers/session_controller");
+var quizController         = require("../controllers/quiz_controller");
+var commentController      = require("../controllers/comment_controller");
+var sessionController      = require("../controllers/session_controller");
+var statisticsController   = require("../controllers/statistics_controller")
 
 /* GET home page. - pagina de bienvenida - index.ejs*/
 router.get('/', function(req, res) {
@@ -40,5 +41,8 @@ router.get("/quizes/:quizId(\\d+)/comments/new",                        commentC
 router.post("/quizes/:quizId(\\d+)/comments"   ,                        commentController.create);
 router.put("/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish",   sessionController.loginRequired, commentController.publish);
 router.delete("/quizes/:quizId(\\d+)/comments/:commentId(\\d+)",        sessionController.loginRequired, commentController.destroy);
+
+// pagina estadisticas ejercicio modulo 9
+router.get("/quizes/statistics" ,                                       statisticsController.calculate, statisticsController.show);
 
 module.exports = router;

@@ -108,3 +108,17 @@ a:hover {
 }
 
 #buscar { margin-bottom: 10px; }
+
+#estadisticas {
+  text-align: left;
+  font-weight: bold;
+}
+
+.izq {
+margin-right: 20px;
+}
+
+.dcha {
+  font-weight: bold;
+  color: red;
+}

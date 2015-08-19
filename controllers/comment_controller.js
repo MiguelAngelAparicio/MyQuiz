@@ -15,7 +15,7 @@ exports.load = function(req, res, next, commentId) {
 
 // GET /quizes/:quizId/comments/new
 exports.new = function(req,res) {
-    res.render("comments/new.ejs", {quizId: req.params.quizId , errors: []});
+    res.render("comments/new", {quizId: req.params.quizId , errors: []});
 };
 
 // POST /quizes/:quizId/comments
@@ -27,7 +27,7 @@ exports.create = function(req,res) {
 
     comment.validate().then(function(err){
             if (err) {
-                res.render('comments/new.ejs', 
+                res.render('comments/new', 
                 {comment: comment, quizId: req.params.quizId, errors: err.errors});
             } else { // save: guarda en DB campo texto de comment
                 comment.save().then( function() {
