@@ -58,12 +58,13 @@ exports.create = function(req,res) {
     req.body.quiz.UserId = req.session.user.id;
     var quiz = models.Quiz.build(req.body.quiz);
 
-    quiz.validate().then(function(err){
+    quiz
+        .validate().then(function(err){
             if (err) {
                 res.render('quizes/new', {quiz: quiz, errors: err.errors});
             } else { 
                 quiz    // save: guarda en DB campos pregunta y respuesta de quiz
-                    .save( { fields: [ "pregunta", "respuesta", "tema", UserId] } )
+                    .save( { fields: [ "pregunta", "respuesta", "tema", "UserId"] } )
                     .then( function() { res.redirect('/quizes');});     // res.redirect: Redirección HTTP a lista de preguntas
             }
         }

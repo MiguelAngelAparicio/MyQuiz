@@ -15,13 +15,13 @@ module.exports = function (sequelize, DataTypes) {
                     isUnique: function(value, next) {
                         var self = this;
                         User
-                        .find({ where: {username: value} })
-                        .then(function(user) {
-                            if (user && self.id !== user.id) {
-                                return next("Este username ya ha sido utilizado");
-                            }
-                            return next();
-                        }).catch(function(err) {
+                            .find({ where: {username: value} })
+                            .then(function(user) {
+                                if (user && self.id !== user.id) {
+                                   return next("Este username ya ha sido utilizado");
+                                }
+                                return next();
+                            }).catch(function(err) {
                             return next(err);
                         });
                     }
