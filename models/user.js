@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
         {
             username: { 
                 type: DataTypes.STRING,
-                unique: true;
+                unique: true,
                 validate: { 
                     notEmpty: {msg: "--> Introduce un nombre de usuario <--"},
                     // comprobar que el username no esta ya utilizado
